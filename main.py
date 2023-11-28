@@ -56,10 +56,16 @@ def create_app():
 
   @app.route("/request", methods=['POST'])
   def postRequest():
-      req_data = request.get_json()
-      name = req_data['name']
-      course = req_data['course']
-      year = req_data['year']
+      name = request.form.get('name')
+      course = request.form.get('course')
+      year = request.form.get('year')
+
+      if not name or not course or not year:
+        return jsonify({
+            'error': 'Missing required fields',
+            'status': '400',
+            'msg': 'Bad Request'
+        })
 
       st = student(db.getNewId(), name, course, year)
       print('new student: ', st.serialize())

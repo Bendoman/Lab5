@@ -12,7 +12,7 @@
             <input type="submit" value="Display all students">
         </form>
 
-        <form id="studentForm" method="POST" onsubmit="submitAddform(); return false;">
+        <form action="https://lab5-wahltowema-uc.a.run.app/request" method="POST">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required><br>
     
@@ -24,31 +24,5 @@
     
             <input type="submit" value="Add new student to database">
         </form>
-
-        <script>
-            function submitAddform() {
-                var formData = {
-                    name: document.getElementById("name").value,
-                    course: document.getElementById("course").value,
-                    year: document.getElementById("year").value
-                };
-
-                fetch('https://lab5-wahltowema-uc.a.run.app/request', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Handle the response data as needed
-                    console.log(data);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-            }
-        </script>
     </body>
 </html>
