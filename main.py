@@ -51,7 +51,7 @@ def create_app():
                       'res': sts,
                       'status': '200',
                       'msg': 'Success getting all students in library!',
-                      'no_of_students': len(bks)
+                      'no_of_students': len(sts)
                   })
 
   return app
