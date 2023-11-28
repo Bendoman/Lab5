@@ -7,7 +7,7 @@ import json
 def create_app():
   app = Flask(__name__)
 
-  @app.route("/")
+  @app.route("/ping")
   def hello_world():
      return "Hello world"
 
