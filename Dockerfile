@@ -1,13 +1,15 @@
-FROM python:3.10
+### First stage
+FROM python:slim
 
-ENV PYTHONUNBUFFERED True
+WORKDIR /home/flask-book-api
 
-ENV APP_HOME /app
+COPY requirements.txt requirements.txt
 
-ENV PORT 8080
+RUN python -m venv venv
+RUN venv/bin/pip install -r requirements.txt
 
-WORKDIR $APP_HOME
+COPY . .
+RUN chmod +x boot.sh
 
-COPY . ./
-
-RUN pip install --no-cache-dir -r requirements.txt
+EXPOSE 8080
+ENTRYPOINT [ "./boot.sh" ]
