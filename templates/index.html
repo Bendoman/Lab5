@@ -28,33 +28,27 @@
 
         <script>
             function submitAddform() {
-            // Get form data
-            var formData = new FormData(document.getElementById("studentForm"));
+                var formData = {
+                    name: document.getElementById("name").value,
+                    course: document.getElementById("course").value,
+                    year: document.getElementById("year").value
+                };
 
-            // Create JSON object from FormData
-            var jsonData = {};
-            formData.forEach(function(value, key){
-                jsonData[key] = value;
-            });
-
-            // Make a POST request using fetch API
-            fetch('/request', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(jsonData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Handle the response data as needed
-                console.log(data);
-                alert(data.msg);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error submitting the form.');
-            });
+                fetch('https://lab5-wahltowema-uc.a.run.app/request', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response data as needed
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
             }
         </script>
     </body>
