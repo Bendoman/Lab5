@@ -29,6 +29,12 @@
     <script>
         function postForm()
         {
+            var data = {
+                name: document.getElementById("name").value,
+                course: document.getElementById("course").value,
+                year: document.getElementById("year").value
+            };
+
             fetch('/request', {
                 method: 'POST',
                 headers: {
