@@ -9,11 +9,10 @@
         <h1>Python database landing page</h1>
     
         <form action="https://lab5-wahltowema-uc.a.run.app/request" method="GET">
-            <input type="submit" value="Add new student to database">
+            <input type="submit" value="Display all students">
         </form>
 
-        <form id="studentForm" action="https://lab5-wahltowema-uc.a.run.app/request" 
-        method="POST" enctype="application/json" onsubmit="submitAddform(); return false;">
+        <form id="studentForm" method="POST" onsubmit="submitAddform(); return false;">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required><br>
     
@@ -23,7 +22,7 @@
             <label for="year">Year:</label>
             <input type="text" id="year" name="year" required><br>
     
-            <input type="submit" value="Add new student to database" onclick="submitAddform()">
+            <input type="submit" value="Add new student to database">
         </form>
 
         <script>
