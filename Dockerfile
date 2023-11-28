@@ -10,7 +10,7 @@ WORKDIR $APP_HOME
 
 COPY . ./
 
-RUN sudo apt-get update && sudo apt-get install python3-dev default-libmysqlclient-dev
+RUN apt-get update && apt-get install python3-dev default-libmysqlclient-dev
 
 RUN pip install --no-cache-dir -r requirements.txt
 
