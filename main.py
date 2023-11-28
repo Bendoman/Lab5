@@ -1,11 +1,13 @@
 import os
 from flask import Flask, jsonify, Response, render_template, request 
+from flask_cors import CORS
 import os, re, datetime
 import db
 from models import Student
 
 def create_app():
   app = Flask(__name__)
+  CORS(app)
   # Error 404 handler
   @app.errorhandler(404)
   def resource_not_found(e):
@@ -22,7 +24,7 @@ def create_app():
   if not os.path.isfile('students.db'):
     db.connect()
 
-  @app.route("/", methods=['GET', 'POST'])
+  @app.route("/")
   def hello_world():
      return render_template("index.html")
 
