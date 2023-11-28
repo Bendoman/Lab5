@@ -1,5 +1,8 @@
 import os
-from flask import Flask, jsonify, Response
+from flask import Flask, jsonify, Response, render_template, request 
+import os, re, datetime
+import db
+from models import Student
 
 def create_app():
   app = Flask(__name__)
@@ -18,7 +21,7 @@ def create_app():
   
   @app.route("/")
   def hello_world():
-     return "Hello world"
+     return render_template("index.html")
 
   @app.route("/ping")
   def hello_world():
@@ -35,3 +38,7 @@ if __name__ == "__main__":
   #    app = create_app()
   print(" Starting app...")
   app.run(host="0.0.0.0", port=8080)
+
+
+
+
