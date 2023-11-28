@@ -12,7 +12,7 @@
             <input type="submit" value="Display all students">
         </form>
 
-        <form id="studentForm">
+        <form id="studentForm" enctype="application/json" onsubmit="submitForm(); return false;">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required><br>
         
