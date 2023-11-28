@@ -12,44 +12,52 @@
             <input type="submit" value="Display all students">
         </form>
 
-        <form onsubmit="postForm(); return false">
+        <form id="studentForm">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required><br>
-    
+        
             <label for="course">Course:</label>
             <input type="text" id="course" name="course" required><br>
-    
+        
             <label for="year">Year:</label>
-            <input type="text" id="year" name="year" required><br>
-    
-            <input type="submit" value="Add new student to database">
+            <input type="number" id="year" name="year" required><br>
+        
+            <button type="button" onclick="submitForm()">Submit</button>
         </form>
+        
+        <script>
+            function submitForm() {
+                // Get form data
+                var name = document.getElementById("name").value;
+                var course = document.getElementById("course").value;
+                var year = document.getElementById("year").value;
+        
+                // Create JSON object
+                var jsonData = {
+                    "name": name,
+                    "course": course,
+                    "year": year
+                };
+        
+                // Make a POST request using fetch API
+                fetch('/write', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(jsonData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response data as needed
+                    console.log(data);
+                    alert(data.msg);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error submitting the form.');
+                });
+            }
+        </script>
     </body>
-
-    <script>
-        function postForm()
-        {
-            var data = {
-                name: document.getElementById("name").value,
-                course: document.getElementById("course").value,
-                year: document.getElementById("year").value
-            };
-
-            fetch('https://lab5-wahltowema-uc.a.run.app/write', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-            .then(res => res.json())
-            .then(data => {
-                console.log('data: ', data)
-                // document.body.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
-                code.innerHTML = JSON.stringify(data, null, 2);
-            }).catch(err => {
-                console.error('error: ', err)
-            });
-        }
-    </script>
 </html>
