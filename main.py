@@ -36,7 +36,7 @@ def create_app():
               if s['id'] == int(json['id']):
                   return jsonify({
                       # 'error': '',
-                      'res': b,
+                      'res': s,
                       'status': '200',
                       'msg': 'Success getting all students in the database'
                   })
@@ -53,6 +53,26 @@ def create_app():
                       'msg': 'Success getting all students in library!',
                       'no_of_students': len(sts)
                   })
+
+  @app.route("/request", methods=['POST'])
+  def postRequest():
+      req_data = request.get_json()
+      name = req_data['name']
+      course = req_data['course']
+      year = req_data['year']
+
+      st = student(db.getNewId(), name, course, year)
+      print('new student: ', st.serialize())
+      db.insert(st)
+      new_sts = [s.serialize() for s in db.view()]
+      print('students in lib: ', new_sts)
+      
+      return jsonify({
+                  # 'error': '',
+                  'res': st.serialize(),
+                  'status': '200',
+                  'msg': 'Success creating a new student!'
+              })
 
   return app
   
