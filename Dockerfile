@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.10.8
 
 ENV PYTHONUNBUFFERED True
 
@@ -9,8 +9,6 @@ ENV PORT 8080
 WORKDIR $APP_HOME
 
 COPY . ./
-
-RUN apt-get update && apt-get install python3-dev default-libmysqlclient-dev
 
 RUN pip install --no-cache-dir -r requirements.txt
 
