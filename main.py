@@ -16,10 +16,15 @@ def create_app():
   def custom_401(error):
     return Response("API Key required.", 401)
   
+  @app.route("/")
+  def hello_world():
+     return "Hello world"
+
   @app.route("/ping")
   def hello_world():
      return "pong"
-  
+
+
   return app
   
 app = create_app()
