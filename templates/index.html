@@ -31,14 +31,17 @@
 
                 // Get form data
                 var formData = new FormData(document.getElementById("studentForm"));
-                console.log('Form Data:', JSON.stringify(jsonData));
+                
 
                 // Create JSON object from FormData
                 var jsonData = {};
                 formData.forEach(function(value, key){
                     jsonData[key] = value;
                 });
-        
+                
+                console.log('Form Data:', JSON.stringify(jsonData));
+
+
                 // Make a POST request using fetch API
                 fetch('/write', {
                     method: 'POST',
