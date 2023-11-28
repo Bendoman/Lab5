@@ -12,7 +12,7 @@
             <input type="submit" value="Display all students">
         </form>
 
-        <form action="https://lab5-wahltowema-uc.a.run.app/request" method="POST">
+        <form action="https://lab5-wahltowema-uc.a.run.app/request" method="POST" onsubmit="postForm()">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required><br>
     
@@ -25,4 +25,26 @@
             <input type="submit" value="Add new student to database">
         </form>
     </body>
+
+    <script>
+        function postForm()
+        {
+            modalHeading.innerHTML = "POST Request Response";
+            fetch('/request', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log('data: ', data)
+                // document.body.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+                code.innerHTML = JSON.stringify(data, null, 2);
+            }).catch(err => {
+                console.error('error: ', err)
+            });
+        }
+    </script>
 </html>
