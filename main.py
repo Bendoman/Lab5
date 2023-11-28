@@ -1,7 +1,5 @@
 from flask import Flask
 from flask import request
-from flask_mysqldb import MySQLas
-from flask_cors import CORS
 import json
 
 def create_app():
