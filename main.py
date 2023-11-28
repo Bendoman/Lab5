@@ -26,7 +26,7 @@ def create_app():
   def hello_world():
      return render_template("index.html")
 
-  @app.route('/request', methods=['GET'])
+  @app.route('/read', methods=['GET'])
   def getRequest():
       content_type = request.headers.get('Content-Type')
       sts = [s.serialize() for s in db.view()]
@@ -54,7 +54,7 @@ def create_app():
                       'no_of_students': len(sts)
                   })
 
-  @app.route("/request", methods=['POST'])
+  @app.route("/write", methods=['POST'])
   def postRequest():
       req_data = request.get_json()
       name = req_data['name']
