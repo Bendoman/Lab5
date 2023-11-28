@@ -22,7 +22,7 @@ def create_app():
   if not os.path.isfile('students.db'):
     db.connect()
 
-  @app.route("/")
+  @app.route("/", methods=['GET', 'POST'])
   def hello_world():
      return render_template("index.html")
 
