@@ -19,16 +19,40 @@ def create_app():
   def custom_401(error):
     return Response("API Key required.", 401)
   
+  if not os.path.isfile('students.db'):
+    db.connect()
+
   @app.route("/")
   def hello_world():
      return render_template("index.html")
 
-  @app.route("/ping")
-  def hello_world():
-     return "Pong"
-  
-
-
+  @app.route('/request', methods=['GET'])
+  def getRequest():
+      content_type = request.headers.get('Content-Type')
+      sts = [s.serialize() for s in db.view()]
+      if (content_type == 'application/json'):
+          json = request.json
+          for s in sts:
+              if s['id'] == int(json['id']):
+                  return jsonify({
+                      # 'error': '',
+                      'res': b,
+                      'status': '200',
+                      'msg': 'Success getting all students in the database'
+                  })
+          return jsonify({
+              'error': f"Error! Student with id '{json['id']}' not found!",
+              'res': '',
+              'status': '404'
+          })
+      else:
+          return jsonify({
+                      # 'error': '',
+                      'res': sts,
+                      'status': '200',
+                      'msg': 'Success getting all students in library!',
+                      'no_of_students': len(bks)
+                  })
 
   return app
   
