@@ -27,17 +27,17 @@
         
         <script>
             function submitForm() {
+                event.preventDefault();
+
                 // Get form data
-                var name = document.getElementById("name").value;
-                var course = document.getElementById("course").value;
-                var year = document.getElementById("year").value;
-        
-                // Create JSON object
-                var jsonData = {
-                    "name": name,
-                    "course": course,
-                    "year": year
-                };
+                var formData = new FormData(document.getElementById("studentForm"));
+                console.log('Form Data:', formData);
+
+                // Create JSON object from FormData
+                var jsonData = {};
+                formData.forEach(function(value, key){
+                    jsonData[key] = value;
+                });
         
                 // Make a POST request using fetch API
                 fetch('/write', {
