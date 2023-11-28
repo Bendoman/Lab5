@@ -1,15 +1,20 @@
 from flask import Flask
 from flask import request
+from flask_mysqldb import MySQLas
 import json
 
 def create_app():
-  app = Flask(__name__)
+    app = Flask(__name__)
 
-  @app.route("/ping")
-  def hello_world():
-     return "Hello world"
+    @app.route("/")
+    def base_route():
+        return "Hello world"
 
-  return app
+    @app.route("/ping")
+    def hello_world():
+        return "pong"
+
+    return app
   
 app = create_app()
 
