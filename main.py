@@ -59,23 +59,22 @@ def create_app():
   @app.route("/write", methods=['POST'])
   def postRequest():
       req_data = request.get_json()
-      print(req_data)
-      # course = req_data['course']
-      # name = req_data['name']
-      # year = req_data['year']
+      course = req_data['course']
+      name = req_data['name']
+      year = req_data['year']
 
-      # st = student(db.getNewId(), name, course, year)
-      # print('new student: ', st.serialize())
-      # db.insert(st)
-      # new_sts = [s.serialize() for s in db.view()]
-      # print('students in lib: ', new_sts)
+      st = student(db.getNewId(), name, course, year)
+      print('new student: ', st.serialize())
+      db.insert(st)
+      new_sts = [s.serialize() for s in db.view()]
+      print('students in lib: ', new_sts)
       
-      # return jsonify({
-      #             # 'error': '',
-      #             'res': st.serialize(),
-      #             'status': '200',
-      #             'msg': 'Success creating a new student!'
-      #         })
+      return jsonify({
+                  # 'error': '',
+                  'res': st.serialize(),
+                  'status': '200',
+                  'msg': 'Success creating a new student!'
+              })
 
   return app
   
