@@ -36,7 +36,6 @@ def view():
     rows = cur.fetchall()
     students = []
     for i in rows:
-        print(i)
         student = Student(i[0], i[1], i[2], i[3])
         students.append(student)
     conn.close()
@@ -45,7 +44,7 @@ def view():
 def update(student):
     conn = sqlite3.connect('students.db')
     cur = conn.cursor()
-    cur.execute("UPDATE students SET available=?, title=? WHERE id=?", (student.available, student.title, student.id))
+    cur.execute("UPDATE students SET name=?, course=?, year=? WHERE id=?", (student.name, student.course, student.year, student.id))
     conn.commit()
     conn.close()
 
