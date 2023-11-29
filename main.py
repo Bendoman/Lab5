@@ -63,7 +63,7 @@ def create_app():
       name = req_data['name']
       year = req_data['year']
 
-      st = student(db.getNewId(), name, course, year)
+      st = Student(db.getNewId(), name, course, year)
       print('new student: ', st.serialize())
       db.insert(st)
       new_sts = [s.serialize() for s in db.view()]
