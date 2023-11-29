@@ -30,17 +30,14 @@ def hello_world():
 
 @app.route('/read', methods=['GET'])
 def getRequest():
-    content_type = request.headers.get('Content-Type')
-    sts = [s.serialize() for s in db.view()]
-    print('students in lib: ', sts)
-    
+    new_sts = [s.serialize() for s in db.view()]
+    print('students in lib: ', new_sts)
     return jsonify({
-                # 'error': '',
-                'res': sts,
-                'status': '200',
-                'msg': 'Success getting all students in library!',
-                'no_of_students': len(sts)
-            })
+            # 'error': '',
+            'res': new_sts,
+            'status': '200',
+            'msg': 'Success creating a new student!'
+        })
 
 @app.route("/write", methods=['POST'])
 def postRequest():
@@ -62,9 +59,7 @@ def postRequest():
                 'msg': 'Success creating a new student!'
             })
 
-  # return app
-  
-# app = create_app()
+
 
 if __name__ == "__main__":
   #    app = create_app()

@@ -5,16 +5,6 @@ def getNewId():
     return random.getrandbits(28)
 
 students = [
-    {
-        'name': 'Ben Corran',
-        'course': 'Computer Science',
-        'year': 3
-    },
-    {
-        'name': 'David Corran',
-        'course': 'Computer Science',
-        'year': 3
-    },
 ]    
 
 def connect():
@@ -46,6 +36,7 @@ def view():
     rows = cur.fetchall()
     students = []
     for i in rows:
+        print(i)
         student = Student(i[0], i[1], i[2], i[3])
         students.append(student)
     conn.close()
