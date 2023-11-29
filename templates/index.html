@@ -3,16 +3,75 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+            }
+        
+            #addStudentForm {
+                border: 1px solid #f1f1f1;
+                padding: 20px;
+            }
+
+            form input {
+                width: 100%;
+                margin: 8px 0;
+                box-sizing: border-box;
+            }
+            
+            form button {
+                background-color: #4CAF50;
+                color: white;
+                width: 50%;
+                padding: 12px 20px;
+                border: none;
+                cursor: pointer;
+                width: 100%;
+            }
+
+            form button:hover {
+                opacity: 0.8;
+            }
+
+            form {
+                border-radius: 5px;
+                background-color: #f2f2f2;
+                padding: 20px;
+                border: 1px solid #f1f1f1;
+                width: 25%;
+                margin: auto;
+                margin-top: 10px;
+            }
+
+            form h2 {
+                color: white;
+                padding: 5px;
+                text-align: center;
+                background-color: #4c7faf;
+            }
+
+            h1 {
+                text-align: center;
+                background-color: #4c7faf;
+                color: white;
+                padding: 5px;              
+            }
+
+
+
+        </style>
         <title>Document</title>
     </head>
     <body>
-        <h1>Python database landing page</h1>
+        <h1>PYTHON CRUD DATABASE</h1>
     
         <form action="https://lab5-wahltowema-uc.a.run.app/read" method="GET">
-            <input type="submit" value="Display all students">
+            <button type="submit">Display all students</button>
         </form>
 
-        <form id="studentForm" enctype="application/json" onsubmit="submitForm(); return false;">
+        <form id="addStudentForm" enctype="application/json" onsubmit="submitForm(); return false;">
+            <h2>ADD STUDENT</h2>
+
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required><br>
         
@@ -22,7 +81,7 @@
             <label for="year">Year:</label>
             <input type="text" id="year" name="year" required><br>
         
-            <button type="button" onclick="submitForm()">Submit</button>
+            <button type="submit">Submit</button>
         </form>
         
         <script>
@@ -30,7 +89,7 @@
                 event.preventDefault();
 
                 // Get form data
-                var formData = new FormData(document.getElementById("studentForm"));
+                var formData = new FormData(document.getElementById("addStudentForm"));
                 
 
                 // Create JSON object from FormData
